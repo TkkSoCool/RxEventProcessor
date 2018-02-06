@@ -111,7 +111,7 @@ public class SendEnevtClassInfo {
                     Event.class, Exception.class, ResourceSubscriber.class, Throwable.class);
         }
 
-        TypeSpec finderClass = TypeSpec.classBuilder(bindingClassName.simpleName() + "$$SEND_ENEVT")
+        TypeSpec finderClass = TypeSpec.classBuilder(bindingClassName.simpleName() + "_SUBSCRIBE_INFO")
                 .addModifiers(Modifier.PUBLIC)
                 .addSuperinterface(ParameterizedTypeName.get(ClassTypeUtil.BINDER, TypeName.get(mClassElement.asType())))
                 .addField(mCompositeDisposable)

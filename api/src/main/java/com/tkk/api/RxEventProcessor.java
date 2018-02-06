@@ -7,6 +7,7 @@ import java.util.Map;
 
 import io.reactivex.processors.FlowableProcessor;
 import io.reactivex.processors.PublishProcessor;
+import io.reactivex.subjects.PublishSubject;
 
 /**
  * Created  on 2018/1/24
@@ -32,6 +33,11 @@ public class RxEventProcessor {
         return sInstance;
     }
 
+    /**
+     * 发送事件
+     * @param tag
+     * @param objects 订阅方法参数
+     */
     public void post(String tag, Object... objects) {
         Event event = new Event(tag, objects);
         mProcessor.onNext(event);
@@ -43,7 +49,7 @@ public class RxEventProcessor {
         if (!subscriberUnbinds.containsKey(subscriberId)) {
             String className = target.getClass().getName();
             try {
-                Class<?> finderClass = Class.forName(className + "$$SEND_ENEVT");
+                Class<?> finderClass = Class.forName(className + "_SUBSCRIBE_INFO");
                 Object targetEventProcessor = finderClass.newInstance();
                 Binder binder = (Binder) targetEventProcessor;
                 Unbinder unbinder = (Unbinder) targetEventProcessor;

@@ -16,13 +16,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.CLASS)
 public @interface Recipient {
-    String tag() ;
-
-
+    String tag();
     ThreadType subscribeOn() default ThreadType.MAIN;
-
     ThreadType observeOn() default ThreadType.MAIN;
-
-
-
 }
